@@ -3,13 +3,47 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.simoneflorincy.contrlole_de_gastos_poo;
+package br.barreto.contrlole_de_gastos_poo;
 
+import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Endereco")
 /**
  *
  * @author User
  */
-public class Endereco {
+public class Endereco implements Serializable {
+
+    @Column(name = "cd_endereco")
+    @Id
+    private String endereco;
+
+    @OneToOne(targetEntity = Funcionario.class,
+            cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @Column(name = "nm_bairro")
+    private String bairro;
+    @Column(name = "ds_cep")
+    private String cep;
+    @Column(name = "nm_cidade")
+    private String cidade;
+    @Column(name = "ds_complemento")
+    private String complemento;
+    @Column(name = "nr_casa")
+    private String numero;
+    @Column(name = "nm_rua")
+    private String rua;
+    @Column(name = "telefone1")
+    private Integer telefone1;
+    @Column(name = "telefone2")
+    private Integer telefone2;
 
     /**
      * @return the bairro
@@ -98,36 +132,29 @@ public class Endereco {
     /**
      * @return the telefone1
      */
-    public String getTelefone1() {
+    public Integer getTelefone1() {
         return telefone1;
     }
 
     /**
      * @param telefone1 the telefone1 to set
      */
-    public void setTelefone1(String telefone1) {
+    public void setTelefone1(Integer telefone1) {
         this.telefone1 = telefone1;
     }
 
     /**
      * @return the telefone2
      */
-    public String getTelefone2() {
+    public Integer getTelefone2() {
         return telefone2;
     }
 
     /**
      * @param telefone2 the telefone2 to set
      */
-    public void setTelefone2(String telefone2) {
+    public void setTelefone2(Integer telefone2) {
         this.telefone2 = telefone2;
     }
-    private String bairro;
-    private String cep;
-    private String cidade;
-    private String complemento;
-    private String numero;
-    private String rua;
-    private String telefone1;
-    private String telefone2;
+
 }

@@ -3,13 +3,46 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.simoneflorincy.contrlole_de_gastos_poo;
+package br.barreto.contrlole_de_gastos_poo;
+
+import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author User
  */
-public class Funcionario {
+@Entity
+@Table(name = "funcionario")
+public class Funcionario implements Serializable {
+
+    @Id
+    @Column(name = "cd_funcionario")
+    Integer codFuncionario;
+    @Column
+    private String nick;
+    @Column(name = "nm_funcionario")
+    private String nome;
+    @Column(name = "ds_senha")
+    private String senha;
+    @Column(name = "funcao_cd_funcao")
+    @OneToOne(targetEntity = Funcao.class,
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER)
+    private Funcao funcao_do_funcionario;
+    @Column(name = "endereco_cd_endereco")
+    @OneToOne(targetEntity = Endereco.class,
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER)
+    private Endereco endereco_do_funcionario;
+    @Column(name = "tp_invisivel")
+    Character invisivel;
 
     /**
      * @return the nick
@@ -80,10 +113,5 @@ public class Funcionario {
     public void setEndereco_do_funcionario(Endereco endereco_do_funcionario) {
         this.endereco_do_funcionario = endereco_do_funcionario;
     }
-    private String nick;
-    private String nome;
-    private String senha;
-    private Funcao funcao_do_funcionario;
-    private Endereco endereco_do_funcionario;
-    
+
 }

@@ -3,13 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.simoneflorincy.contrlole_de_gastos_poo;
+package br.barreto.contrlole_de_gastos_poo;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "cd_funcao")
 /**
  *
  * @author User
  */
-public class Funcao {
+public class Funcao implements Serializable {
+
+    @Id
+    @Column(name = "cd_funcao")
+    Integer codFuncao;
+    @Column
+    private boolean acessoRestrito;
+    @Column(name = "ds_funcao")
+    private String descricao;
+    @Column(name = "tp_visivel")
+    Character visivel;
 
     /**
      * @return the acessoRestrito
@@ -38,7 +56,5 @@ public class Funcao {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
- private boolean acessoRestrito;
- private String descricao;
 
 }
